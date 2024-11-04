@@ -23,7 +23,7 @@ SELECT simcards.simcardId      AS simcard_id,
        persons.personId        AS person_id,
        persons.first_name,
        persons.last_name,
-       persons.national_code   AS national_code
+       persons.national_code
 FROM simcards
          JOIN persons
               ON simcards.ownerId = persons.personId;
