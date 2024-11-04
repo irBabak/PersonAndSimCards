@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
@@ -40,31 +40,35 @@
             <TextField fx:id="simcardNumberTxt" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
-      <Button fx:id="saveBtn" layoutX="21.0" layoutY="318.0" mnemonicParsing="false" text="SAVE" />
-      <Button fx:id="editBtn" layoutX="95.0" layoutY="318.0" mnemonicParsing="false" text="EDIT" />
-      <Button fx:id="removeBtn" layoutX="158.0" layoutY="318.0" mnemonicParsing="false" text="REMOVE" />
-      <TableView fx:id="personsTbl" layoutX="287.0" layoutY="55.0" prefHeight="362.0" prefWidth="327.0">
+      <TableView fx:id="personsTbl" layoutX="287.0" layoutY="55.0" prefHeight="362.0" prefWidth="328.0">
         <columns>
           <TableColumn fx:id="personIdCol" prefWidth="75.0" text="person-Id" />
           <TableColumn fx:id="firstNameCol" prefWidth="75.0" text="first name" />
             <TableColumn fx:id="lastNameCol" prefWidth="75.0" text="last name" />
-            <TableColumn fx:id="nationalCodCol" prefWidth="102.0" text="national code" />
+            <TableColumn fx:id="nationalCodeCol" prefWidth="102.0" text="national code" />
         </columns>
       </TableView>
-      <TableView fx:id="simcardsTbl" layoutX="621.0" layoutY="55.0" prefHeight="362.0" prefWidth="183.0">
+      <TableView fx:id="simcardsTbl" layoutX="621.0" layoutY="55.0" prefHeight="362.0" prefWidth="184.0">
         <columns>
           <TableColumn fx:id="simcardIdCol" prefWidth="75.0" text="simcard-Id" />
           <TableColumn fx:id="simcardNumberCol" prefWidth="108.0" text="simcard number" />
         </columns>
       </TableView>
-      <Button fx:id="findByNationalCodeBtn" layoutX="287.0" layoutY="19.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0">
-         <graphic>
-            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/findByNationalCodeBtn.jpg" />
-               </image>
-            </ImageView>
-         </graphic></Button>
-      <TextField fx:id="findByNationalCodeTxt" layoutX="312.0" layoutY="19.0" prefHeight="25.0" prefWidth="127.0" promptText="find by national code" />
+      <HBox layoutX="43.0" layoutY="299.0">
+         <children>
+            <Button fx:id="saveBtn" mnemonicParsing="false" text="SAVE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="editBtn" mnemonicParsing="false" text="EDIT">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="removeBtn" mnemonicParsing="false" text="REMOVE" />
+         </children>
+      </HBox>
+      <Label fx:id="countTxt" layoutX="21.0" layoutY="350.0" />
    </children>
 </Pane>
