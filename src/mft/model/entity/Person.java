@@ -17,6 +17,7 @@ public class Person {
     private int id;
     private String firstName;
     private String lastName;
+    private String nationalCode;
     private List<SimCard> simCardList;
 
     public void addSimCard(SimCard simCard) throws Exception {
