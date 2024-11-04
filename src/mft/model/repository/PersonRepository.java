@@ -38,12 +38,13 @@ public class PersonRepository implements AutoCloseable{
         connection = ConnectionProvider.getConnectionProvider().getConnection();
         preparedStatement = connection.prepareStatement(
                 "UPDATE persons" +
-                        " SET personId = ?, first_name = ?, last_name = ?, national_code = ?"
+                        " SET first_name = ?, last_name = ?, national_code = ?" +
+                        " WHERE personId = ?"
         );
-        preparedStatement.setInt(1, person.getId());
-        preparedStatement.setString(2, person.getFirstName());
-        preparedStatement.setString(3, person.getLastName());
-        preparedStatement.setString(4, person.getNationalCode());
+        preparedStatement.setString(1, person.getFirstName());
+        preparedStatement.setString(2, person.getLastName());
+        preparedStatement.setString(3, person.getNationalCode());
+        preparedStatement.setInt(4, person.getId());
         preparedStatement.execute();
     }
 

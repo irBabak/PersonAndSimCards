@@ -17,9 +17,10 @@ public class SimCardRepository implements AutoCloseable{
     public void save(SimCard simCard) throws SQLException {
         connection = ConnectionProvider.getConnectionProvider().getConnection();
         preparedStatement = connection.prepareStatement(
-                "SELECT simcard_seq.netxval AS next_id FROM dual"
+                "SELECT simcard_seq.nextval AS next_id FROM dual"
         );
         ResultSet resultSet = preparedStatement.executeQuery();
+        resultSet.next();
         simCard.setId(resultSet.getInt("next_id"));
 
         preparedStatement = connection.prepareStatement(
@@ -37,18 +38,19 @@ public class SimCardRepository implements AutoCloseable{
         connection = ConnectionProvider.getConnectionProvider().getConnection();
         preparedStatement = connection.prepareStatement(
                 "UPDATE simcards" +
-                        " SET simcardId = ?, simcard_number = ?, ownerId = ?"
+                        " SET simcard_number = ?" +
+                        " WHERE ownerId = ?"
         );
-        preparedStatement.setInt(1, simCard.getId());
-        preparedStatement.setString(2, simCard.getSimCardNumber());
-        preparedStatement.setInt(3, simCard.getOwner().getId());
+        preparedStatement.setString(1, simCard.getSimCardNumber());
+        preparedStatement.setInt(2, simCard.getOwner().getId());
         preparedStatement.execute();
     }
 
     public void remove(int id) throws SQLException {
         connection = ConnectionProvider.getConnectionProvider().getConnection();
         preparedStatement = connection.prepareStatement(
-                "DELETE FROM simcards WHERE id = ?"
+                "DELETE FROM simcards" +
+                        " WHERE simcardId = (SELECT simcard_id FROM PERSON_SIMCARD_VIEW WHERE person_id = ?)"
         );
         preparedStatement.setInt(1, id);
         preparedStatement.execute();
@@ -76,7 +78,7 @@ public class SimCardRepository implements AutoCloseable{
                     SimCard
                             .builder()
                             .id(resultSet.getInt("simcard_id"))
-                            .simCardNumber(resultSet.getString("simcard_number"))
+                            .simCardNumber(resultSet.getString("phone_number"))
                             .owner(person)
                             .build();
 
@@ -109,7 +111,7 @@ public class SimCardRepository implements AutoCloseable{
                     SimCard
                             .builder()
                             .id(resultSet.getInt("simcard_id"))
-                            .simCardNumber(resultSet.getString("simcard_number"))
+                            .simCardNumber(resultSet.getString("phone_number"))
                             .owner(person)
                             .build();
 
