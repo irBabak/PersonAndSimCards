@@ -51,7 +51,7 @@
             <TableColumn fx:id="nationalCodCol" prefWidth="102.0" text="national code" />
         </columns>
       </TableView>
-      <TableView fx:id="simcardsTbl" layoutX="621.0" layoutY="55.0" prefHeight="362.0" prefWidth="247.0">
+      <TableView fx:id="simcardsTbl" layoutX="621.0" layoutY="55.0" prefHeight="362.0" prefWidth="183.0">
         <columns>
           <TableColumn fx:id="simcardIdCol" prefWidth="75.0" text="simcard-Id" />
           <TableColumn fx:id="simcardNumberCol" prefWidth="108.0" text="simcard number" />
